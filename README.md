@@ -117,3 +117,10 @@ The format for all responses should be a JSON object with up to three keys:
   - GET `/sightings/habitats/:id`: Get all sightings for a specific habitat.
   - POST `/sightings`: Add new sighting.
   - DELETE `/sightings/:id`: Delete single sighting.
+
+## Front End
+
+Connect to your server, and have a website with the following functionality:
+
+- Show all sightings
+- Show all sightings from a given researcher
