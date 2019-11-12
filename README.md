@@ -124,3 +124,7 @@ Connect to your server, and have a website with the following functionality:
 
 - Show all sightings
 - Show all sightings from a given researcher
+
+## Rubric
+
+![databaseRubric](./databaseRubric.png)
