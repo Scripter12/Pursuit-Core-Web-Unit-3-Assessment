@@ -1,0 +1,24 @@
+{
+  "name": "pursuit-core-web-unit-3-assessment",
+  "version": "1.0.0",
+  "description": "## Introduction",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scripter12/Pursuit-Core-Web-Unit-3-Assessment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Scripter12/Pursuit-Core-Web-Unit-3-Assessment/issues"
+  },
+  "homepage": "https://github.com/Scripter12/Pursuit-Core-Web-Unit-3-Assessment#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg-promise": "^10.2.1"
+  }
+}
