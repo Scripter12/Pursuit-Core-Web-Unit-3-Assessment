@@ -30,9 +30,9 @@ The format for all responses should be a JSON object with up to three keys:
 - `message` - Either `got all users` or an error message
 - `body` - Your response from SQL (if necessary - not necessary for POST or DELETE requests).
 
-## Schema
+## Database Schema
 
-## Tables and Columns
+### Tables and Columns
 
 - **Researchers**
   - `id`: Integer, primary key.
@@ -58,7 +58,7 @@ The format for all responses should be a JSON object with up to three keys:
 ### Diagram
 ![marine biology db diagram](./assets/Marine_Biology_DB.png)
 
-## Seed Data
+### Seed Data
 
 - **Researchers**
   - Mariana Aleta, Job Title: Project Lead.
@@ -91,7 +91,7 @@ The format for all responses should be a JSON object with up to three keys:
   - A Moray Eel was spotted by Ezra Flip in the Shallows.
   
   
-## Routes
+## Backend/API Routes
 
 - **Researchers**
   - GET `/researchers`: Get all researchers.
