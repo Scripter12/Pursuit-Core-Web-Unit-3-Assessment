@@ -20,15 +20,8 @@ Based on these descriptions, we can conclude:
 - Sightings have one Researcher, one Species, and one Habitat (a particular researcher sees a species in a habitat - this is a join table).
 - Habitats have many sightings (many sightings happen in a specific habitat).
 
-Take a look at `schema.md` in this repo for a detailed description of what the tables should look like, as well as seed data describing what they should contain.
-
-Once we create our database, we need to provide the research team with a robust RESTful API to make it easy for them to see and update information. Take a look at `routes.md` for a full list of the routes this API should have. Please make sure to link it up with your Postgres database!
-
-The format for all responses should be a JSON object with up to three keys:
-
-- `status` - Either `success` or `error`
-- `message` - Either `got all users` or an error message
-- `body` - Your response from SQL (if necessary - not necessary for POST or DELETE requests).
+**Database Schema** has a detailed description of what the tables should look like, as well as seed data describing what they should contain.
+Once we create our database, we need to provide the research team with a robust RESTful API to make it easy for them to see and update information. **Backend/API** below has a full list of the routes this API should have. 
 
 ## Database Schema
 
@@ -90,8 +83,61 @@ The format for all responses should be a JSON object with up to three keys:
   - A Dolphin was spotted by Javed Patrick in the Shallows.
   - A Moray Eel was spotted by Ezra Flip in the Shallows.
   
-  
-## Backend/API Routes
+<details>
+  <summary>
+  Seed Data SQL
+  </summary>
+
+```sql
+INSERT INTO researchers(name, job_title) VALUES
+('Mariana Aleta', 'Project Lead'),
+('Javed', 'Senior Field Researcher'),
+('Carolina', 'Field Researcher'),
+('Jazmyn', 'Field Researcher'),
+('Ezra', 'Research Intern')
+;
+
+INSERT INTO species(name, is_mammal) VALUES
+('Dolphin', true),
+('Moray Eel', false),
+('Tiger Shark', false),
+('Orca Whale', true),
+('Moon Jelly', false)
+;
+
+INSERT INTO animals(species_id, nickname) VALUES
+(1, 'Flip'),    -- Dolphin
+(1, 'Skip'),    -- Dolphin
+(2, 'Jenkins'), -- Moray El
+(3, 'Sally'),   -- Tiger Shark
+(5, 'Flapjack'),-- Moon Jelly
+(5, 'Gibbous'), -- Moon Jelly
+(5, 'Nox')      -- Moon Jelly
+;
+
+INSERT INTO habitats(category) VALUES
+('Shallows'),
+('Coral Reef'),
+('Tide Pools'),
+('Deeps')
+;
+
+INSERT INTO sightings(species_id, researcher_id, habitat_id) VALUES
+(4, 4, 4), -- An Orca Whale was spotted by Jazmyn Gottfried in the Deeps.
+(3, 1, 4), -- A Tiger Shark was spotted by Mariana Aleta in the Deeps.
+(5, 3, 3), -- A Moon Jelly was spotted by Carolina Itai in the Tide Pools.
+(2, 5, 2), -- A Moray Eel was spotted by Ezra Flip in the Coral Reef.
+(1, 2, 1), -- A Dolphin was spotted by Javed Patrick in the Shallows.
+(2, 5, 1)  -- A Moray Eel was spotted by Ezra Flip in the Shallows.
+;
+
+```  
+
+</details>
+
+## Backend/API 
+
+### Routes
 
 - **Researchers**
   - GET `/researchers`: Get all researchers.
@@ -120,6 +166,39 @@ The format for all responses should be a JSON object with up to three keys:
   - GET `/sightings/habitats/:id`: Get all sightings for a specific habitat.
   - POST `/sightings`: Add new sighting.
   - DELETE `/sightings/:id`: Delete single sighting.
+
+### Responses Format
+
+The format for all responses should be a JSON object with three properties `status`, `message` and `payload`.
+
+A successful request should be answered with the following JSON:
+```json
+{
+    "status": "success",                      
+    "message": "retrieved single researcher", 
+    "payload": {                              
+        "id": 11,
+        "name": "Jen Simmons",
+        "job_title": "Lab Researcher"
+    }
+}
+```
+
+For a failed request the JSON sent should be something like:
+```json
+{
+    "status": "error",
+    "message": "researcher not found",
+    "payload": null
+}
+```
+
+#### Notes
+* `payload`. Your response from SQL (the actual data)
+* `message`. Either `"got all users"` or an error message
+* `status`. Either `"success"` or `"error"`
+* `payload`. If a single row is retrieved from the database, like when retrieving a single researcher `payload` should contain a single **object**. When retrieving a multiple rows like when getting all researchers `payload` should contain an **array**. The rule of thumb is if _single_ => **object**, _list_ => **array**
+* If possible, when deleting, inserting and updating rows in the database return the affected row/data in the `payload` property of the response. (optional)
 
 ## Front End
 
