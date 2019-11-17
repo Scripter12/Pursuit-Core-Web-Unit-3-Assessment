@@ -55,6 +55,9 @@ The format for all responses should be a JSON object with up to three keys:
   - `species_id`: Integer, foreign key referencing `id` column in Species table. Add "ON DELETE CASCADE".
   - `habitat_id`: Integer, foreign key referencing `id` column in Habitats table.
 
+### Diagram
+![marine biology db diagram](./assets/Marine_Biology_DB.png)
+
 ## Seed Data
 
 - **Researchers**
