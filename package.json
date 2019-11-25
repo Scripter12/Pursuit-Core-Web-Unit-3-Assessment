@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Scripter12/Pursuit-Core-Web-Unit-3-Assessment#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "pg-promise": "^10.2.1"
   }
