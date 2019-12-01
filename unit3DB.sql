@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS unit;
 
 CREATE DATABASE unit;
 
-\c unit
+\c unit;
 
 CREATE TABLE researchers(
 id SERIAL PRIMARY KEY,
@@ -30,7 +30,7 @@ category VARCHAR
 CREATE TABLE sightings(
 id SERIAL PRIMARY KEY,
 researcher_id INT REFERENCES researchers(id) ON DELETE SET NULL,
-species_id INT REFERENCES researchers(id) ON DELETE CASCADE,
+species_id INT REFERENCES species(id) ON DELETE CASCADE,
 habitat_id INT REFERENCES habitats(id)
 );
 
