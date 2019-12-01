@@ -30,7 +30,7 @@ router.get("/species/:id", async (req, res) => {
   }
 })
 
-router.get("/researchers/:id", (req, res) => {
+router.get("/researchers/:id", async (req, res) => {
   try {
     let response = await db.any('SELECT * FROM sightings WHERE researcher_id = $1', req.params.id)
     res.json({
@@ -44,7 +44,7 @@ router.get("/researchers/:id", (req, res) => {
   }
 })
 
-router.get("/habitats/:id", (req, res) => {
+router.get("/habitats/:id", async (req, res) => {
   try {
     let response = await db.any('SELECT * FROM sightings WHERE habitat_id = $1', req.params.id)
     res.json({
